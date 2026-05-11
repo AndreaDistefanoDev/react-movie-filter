@@ -1,2 +1,7 @@
 @import url('bootstrap');
 @import url('bootstrap-icons');
+
+.film-img {
+  height: 500px;
+  object-fit: cover;
+}
