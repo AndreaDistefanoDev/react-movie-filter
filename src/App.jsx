@@ -46,7 +46,7 @@ function App() {
       <h1>Movies</h1>
 
       <div>
-        <label htmlFor="search">Search film with title</label>
+        <label htmlFor="search">Search film with title</label><br />
         <input type="text" value={search} onChange={getTitleFiltered} />
       </div>
 
@@ -87,6 +87,29 @@ function App() {
 
         </div>
 
+      </div>
+
+      <div className="container">
+        <form action="">
+          <div>
+            <label htmlFor="titolo">Titolo</label>
+            <input type="text" placeholder="Titolo" />
+          </div>
+          <div>
+            <label htmlFor="genere">Genere</label><br />
+            <select class="form-select" aria-label="Esempio select">
+              <option value=''>Seleziona genere</option>
+              <option value="Thriller">Thriller</option>
+              <option value="Fantascienza">Fantascienza</option>
+              <option value="Romantico">Romantico</option>
+              <option value="Azione">Azione</option>
+            </select>
+          </div>
+          <div>
+            <label for="file">Aggiungi copertina</label><br />
+            <input type="file" id="myfile" name="file"></input>
+          </div>
+        </form>
       </div>
 
     </>
