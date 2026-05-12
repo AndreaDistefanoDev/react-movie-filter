@@ -14,35 +14,53 @@ function App() {
 
   const [movies, setMovies] = useState(initialMovies)
   const [selectGenre, setSelectGenre] = useState('')
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
-    if (selectGenre === '') {
-      setMovies(initialMovies)
-    } else {
-      const filteredMovies = initialMovies.filter(movie => movie.genre === selectGenre)
-      setMovies(filteredMovies)
+
+    let filteredMovies = initialMovies
+
+    if (selectGenre) {
+      filteredMovies = initialMovies.filter(movie => movie.genre === selectGenre)
     }
-  }, [selectGenre])
+
+    if (search) {
+      filteredMovies = filteredMovies.filter(movie => movie.title.toLowerCase().includes(search.toLowerCase()))
+    }
+
+    setMovies(filteredMovies)
+
+  }, [selectGenre, search])
 
   function getMoviesFiltered(e) {
 
     setSelectGenre(e.target.value)
   }
 
-
+  function getTitleFiltered(e) {
+    setSearch(e.target.value)
+  }
 
   return (
     <>
       <h1>Movies</h1>
 
-      <select className="form-select" id="select-genre" value={selectGenre} onChange={getMoviesFiltered}>
-        <option value=''>Tutti i generi</option>
-        <option value="Fantascienza">Fantascienza</option>
-        <option value="Thriller">Thriller</option>
-        <option value="Romantico">Romantico</option>
-        <option value="Azione">Azione</option>
+      <div>
+        <label htmlFor="search">Search film with title</label>
+        <input type="text" value={search} onChange={getTitleFiltered} />
+      </div>
 
-      </select>
+      <div>
+        <label htmlFor="genre">Genre</label>
+        <select className="form-select" id="select-genre" value={selectGenre} onChange={getMoviesFiltered}>
+          <option value=''>Tutti i generi</option>
+          <option value="Fantascienza">Fantascienza</option>
+          <option value="Thriller">Thriller</option>
+          <option value="Romantico">Romantico</option>
+          <option value="Azione">Azione</option>
+
+        </select>
+      </div>
 
       <div className="container">
         <div className="row">
